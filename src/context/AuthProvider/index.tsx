@@ -8,11 +8,15 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     const [user, setUser] = useState<IUser | null>();
     
     async function authenticate (email: string, password: string) {
-        const response = await LoginRequest(email, password);
+        const response = await LoginRequest(email, password); // faz a requisição a API passando o email e senha
+
+        const payload = {token: response.token, email};
+
+        setUser(payload); // carrega o usuário com o email e o token
     }
 
     function logout () {
-
+        setUser(null); // zera os dados do usuário (desloga)
     }
     
     return (
