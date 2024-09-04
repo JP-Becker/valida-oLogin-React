@@ -1,5 +1,6 @@
 import './App.css';
-import { ProtectedLayout } from './components/ProtectedLayout';
+import { Login } from './components/Login';
+import { ProtectedLayout } from './components/ProtectedLayout/protectedLayout';
 import { AuthProvider } from './context/AuthProvider';
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -9,13 +10,12 @@ function App() {
     <AuthProvider> 
       <BrowserRouter>
         <Routes>
-          <Route path ='/profile'>
-            <ProtectedLayout>
-              <h2>Componente profile</h2>
-            </ProtectedLayout>
+          <Route path ='/profile' element={<ProtectedLayout>
+            <p>Componente profile</p>
+          </ProtectedLayout>}>
+            
           </Route>
-          <Route path ='/login'>
-          
+          <Route path ='/login' element={<Login/>}>
           </Route>
         </Routes>
       </BrowserRouter>

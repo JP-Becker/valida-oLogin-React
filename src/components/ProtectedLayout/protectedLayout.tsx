@@ -5,5 +5,9 @@ export const ProtectedLayout = ({children}: { children: JSX.Element}) => {// cri
             // O protected layout vai fazer com que carregue apenas se o usuário estiver logado e autenticado
     const auth = useAuth(); // usando o hook criado para puxar as informações de contexto
 
-    return auth.email ? children : <h1>Você não tem acesso!</h1>// se o email for autorizado carrega
+    if (!auth.email) {
+        return <h1>Só quer mamão, só quer mel?</h1>
+    }// se o email não for autorizado 
+
+    return children;// se for carrega
 }
