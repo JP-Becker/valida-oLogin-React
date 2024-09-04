@@ -9,7 +9,11 @@ export function setUserLocalStorage (user: IUser | null) { // função para arma
 export function getUserLocalStorage () {
     const json = localStorage.getItem('u'); //guardando o item buscado do localStorage (salvo em formato JSON)
 
-    return json ? JSON.parse(json) ?? null : null; //verificando se o item de fato existe no localStorage. se sim, retorna ele (user), senao retorna nulo
+    if (!json) {
+        return null;
+    } //verificando se o item de fato existe no localStorage. se sim, retorna ele (user), senao retorna nulo
+
+    return JSON.parse(json); 
 }
 
 
